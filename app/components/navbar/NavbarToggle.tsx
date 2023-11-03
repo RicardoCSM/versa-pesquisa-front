@@ -20,7 +20,7 @@ const NavbarToggle: React.FC<ToggleProps> = ({
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
-            if (node.current?.contains(e.target as Node)) {
+            if ((e.target as HTMLElement).closest('.menu-item')) {
                 return;
             }
             setIsOpen(false);
@@ -38,7 +38,7 @@ const NavbarToggle: React.FC<ToggleProps> = ({
                 onClick={toggleOpen}
                 aria-label="Toggle"
                 className="
-                    sm:hidden
+                    md:hidden
                     p-[10px]
                     border-[1px]
                      border-gray-400

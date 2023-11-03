@@ -3,12 +3,12 @@
 import Link from "next/link";
 import React from "react";
 
-interface MenuItemProps {
+interface NavbarButtonProps {
   href: string;
   label: string
 }
 
-const NavbarButton: React.FC<MenuItemProps> = ({
+const NavbarButton: React.FC<NavbarButtonProps> = ({
   href,
   label,
 }) => {

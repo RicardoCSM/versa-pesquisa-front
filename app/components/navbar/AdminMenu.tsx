@@ -4,7 +4,7 @@ import { AiOutlineShareAlt } from "react-icons/ai"
 import { BsQuestionCircle,} from "react-icons/bs";
 import { FaUserCircle} from "react-icons/fa";
 import { PiCaretDownBold } from "react-icons/pi";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import NavbarToggle from "./NavbarToggle";
 import MenuItem from "./MenuItem";
 import NavbarLink from "../links/NavbarLink";
@@ -17,29 +17,14 @@ interface AdminMenuProps {
 
 const AdminMenu: React.FC<AdminMenuProps> = ({ activeMenu, onMenuChange }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const node = useRef<HTMLDivElement>(null);
     const dropdownOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, [])
 
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (node.current?.contains(e.target as Node)) {
-                return;
-            }
-            setIsOpen(false);
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [node]);
-
     return (
         <div className="relative">
             <div className="flex flex-row items-center">
-                <div className="hidden mx-3 w-full sm:grid gap-4 grid-cols-4">
+                <div className="hidden mx-3 w-full md:grid gap-4 grid-cols-4">
                     <div className="col-span-3 border-x h-8 border-gray-500 flex items-center justify-around">
                         <div 
                         className={`flex items-center gap-2 cursor-pointer`}
@@ -65,8 +50,9 @@ const AdminMenu: React.FC<AdminMenuProps> = ({ activeMenu, onMenuChange }) => {
                     </div>
                 </div> 
                 <NavbarToggle>
-                    <MenuItem onClick={() => {}} label="About" aria-label="About"/>
-                    <MenuItem onClick={() => {}} label="Log Out" aria-label="Log Out"/>
+                    <MenuItem onClick={() => onMenuChange('create')} label="Create" aria-label="About"/>
+                    <MenuItem onClick={() => onMenuChange('integrations')} label="Integrations" aria-label="Integrations"/>
+                    <MenuItem onClick={() => onMenuChange('Results')} label="Results" aria-label="Results"/>
                 </NavbarToggle>
             </div>
         </div>

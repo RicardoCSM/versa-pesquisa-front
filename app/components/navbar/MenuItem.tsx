@@ -3,7 +3,7 @@
 import React from "react";
 
 interface MenuItemProps {
-  onClick: () => void
+  onClick?: () => void
   label: string
   hidden?: boolean
 }
@@ -17,6 +17,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
     <div
       onClick={onClick}
       className={`
+        menu-item
         px-4
         py-2
         bg-[#F8F2E2]

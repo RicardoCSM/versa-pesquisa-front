@@ -13,7 +13,7 @@ interface AdminNavbarProps {
 const AdminNavbar: React.FC<AdminNavbarProps> = ({activeMenu, onMenuChange }) => {
 
     return (
-        <div className="w-full bg-[#F8F2E2] z-10 shadow-lg">
+        <div className="w-full bg-[#F8F2E2] z-50 border-b border-gray-500">
             <div className="py-4">
                 <Container>
                     <div className="
