@@ -8,7 +8,7 @@ import HomeMenu from "./HomeMenu";
 const Navbar = () => {
     return (
         <div className="w-full bg-[#F8F2E2] z-10 shadow-lg">
-            <div className="py-4">
+            <div className="py-3">
                 <Container>
                     <div className="
                         flex

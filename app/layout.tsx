@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import './globals.css'
-import Navbar from './components/navbar/Navbar'
 
 const roboto = Roboto({ weight:"400", subsets: ['latin'] })
 
@@ -9,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Versa Pesquisa',
   description: 'Crie e gerencie suas pesquisa com o Versa Pesquisa!',
 }
+
 
 export default function RootLayout({
   children,
@@ -18,7 +18,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-[#F8F2E2] ${roboto.className}`}>
-        <Navbar />
         {children}
       </body>
     </html>
