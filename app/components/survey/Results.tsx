@@ -1,5 +1,6 @@
 'use client';
 
+import Title from "../Title";
 import Sidebar from "../sidebar/Sidebar";
 
 const Results = () => {
@@ -8,8 +9,8 @@ const Results = () => {
             <div>
                 <Sidebar />
             </div>
-            <div>
-                <h1>Results</h1>
+            <div className="w-full md:ml-[238px] md:mt-[65px]">
+                <Title title="Results"/>
             </div>
         </div>
     )

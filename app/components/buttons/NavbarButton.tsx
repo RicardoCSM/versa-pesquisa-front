@@ -4,17 +4,17 @@ import Link from "next/link";
 import React from "react";
 
 interface NavbarButtonProps {
-  href: string;
+  onClick: () => void
   label: string
 }
 
 const NavbarButton: React.FC<NavbarButtonProps> = ({
-  href,
+  onClick,
   label,
 }) => {
   return (
-    <Link
-      href={href}
+    <div
+      onClick={onClick}
       aria-label={label}
       className="
         hidden
@@ -30,7 +30,7 @@ const NavbarButton: React.FC<NavbarButtonProps> = ({
         hover:shadow-md
         ">
       {label}
-    </Link>
+    </div>
   )
 }
 

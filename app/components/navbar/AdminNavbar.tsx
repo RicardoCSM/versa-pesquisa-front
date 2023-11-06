@@ -13,7 +13,7 @@ interface AdminNavbarProps {
 const AdminNavbar: React.FC<AdminNavbarProps> = ({activeMenu, onMenuChange }) => {
 
     return (
-        <div className="w-full bg-[#F8F2E2] z-50 border-b border-gray-500">
+        <div className="w-full bg-[#F8F2E2] z-50 border-b border-gray-500 md:fixed">
             <div className="py-4">
                 <Container>
                     <div className="
@@ -25,7 +25,7 @@ const AdminNavbar: React.FC<AdminNavbarProps> = ({activeMenu, onMenuChange }) =>
                         md:gap-0
                       ">
                         <div className="flex-grow-0 mr-3">
-                            <Logo />
+                            <Logo onClick={() => onMenuChange('home')}/>
                         </div>
                         <div className="flex-grow">
                             <AdminMenu activeMenu={activeMenu} onMenuChange={onMenuChange} />

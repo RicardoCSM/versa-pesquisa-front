@@ -27,20 +27,20 @@ const Sidebar: React.FC<SidebarProps> = ({
     };
 
     return (
-        <div>
+        <div className={`md:border-none ${!sidebarOpen ? 'border-b border-gray-500' : ''}`}>
             <HiOutlineMenuAlt2
                 onClick={toggleSidebar}
                 size={32}
-                className={`text-gray-500 mx-auto my-3 md:hidden ${sidebarOpen ? 'hidden' : 'flex transition-opacity duration-500'}`}
+                className={`text-gray-500 mx-auto my-3 md:hidden cursor-pointer ${sidebarOpen ? 'hidden' : 'flex transition-opacity duration-500'}`}
             />
-            <div className={`w-full md:w-[238px] transition-transform duration-500 ${sidebarOpen ? 'sm:translate-x-0  md:h-screen' : '-translate-x-full hidden'} border-r border-b md:border-b-0 border-gray-500`} aria-label="Sidebar">
-                <div className="h-full px-3 py-4 overflow-y-auto bg-[#F8F2E2]">
+            <div className={`w-full md:fixed md:w-[238px] transition-transform duration-500 ${sidebarOpen ? 'sm:translate-x-0 md:h-screen' : '-translate-x-full hidden'} border-r border-b md:border-b-0 border-gray-500`} aria-label="Sidebar">
+                <div className="h-full px-3 py-4 md:mt-[65px] overflow-y-auto bg-[#F8F2E2]">
                     <ul className="space-y-6 mt-8 font-medium">
                         {children}
                         <AiOutlineCloseCircle
                             onClick={toggleSidebar}
                             size={32}
-                            className="text-gray-500 m-auto flex md:hidden"
+                            className="text-gray-500 m-auto flex md:hidden cursor-pointer"
                         />
                     </ul>
                 </div>

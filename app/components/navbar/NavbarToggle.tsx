@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import ToggleDropdown from "../buttons/ToggleDropdown";
 
@@ -12,25 +12,10 @@ const NavbarToggle: React.FC<ToggleProps> = ({
     children
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const node = useRef<HTMLDivElement>(null);
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, [])
-
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if ((e.target as HTMLElement).closest('.menu-item')) {
-                return;
-            }
-            setIsOpen(false);
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [node]);
 
     return (
         <>

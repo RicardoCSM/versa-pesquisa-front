@@ -2,12 +2,12 @@
 
 import Title from "../Title";
 
-const Integrations = () => {
+const Profile = () => {
     return (
         <div className=" md:pt-[65px]">
-        <Title title="Integrations"/>
+        <Title title="Profile"/>
         </div>
     )
 }
 
-export default Integrations;
+export default Profile;

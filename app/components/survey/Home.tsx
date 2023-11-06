@@ -3,7 +3,7 @@
 const Home = () => {
 
     return (
-        <h1>Home</h1>
+        <h1 className="md:pt-[65px]">Home</h1>
     )
 }
 

@@ -1,18 +1,25 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
-const Logo = () => {
+interface LogoProps {
+    onClick?: () => void
+}
+
+const Logo: React.FC<LogoProps> = ({onClick}) => {
+
+    const handleClick = onClick || (() => {
+        window.location.href = "/";
+    });
 
     return (
-        <Link href={"/"}>
+        <div onClick={handleClick} className="cursor-pointer">
             <Image 
                 src="/images/logo.png"
                 aria-label="Versa Pesquisa"
                 alt="Logo"
                 width={180} height={36.82}/>
-        </Link>
+        </div>
     )
 }
 

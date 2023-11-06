@@ -1,10 +1,10 @@
 'use client';
 
-interface ProjectsDropdownProps {
+interface ProfileDropdownProps {
     children: React.ReactNode;
 }
 
-const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({
+const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
     children
 }) => {
 
@@ -15,10 +15,11 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({
             rounded-xl
             shadow-lg
             w-[40vw]
-            left-11
+            md:w-1/4
             bg-white
             overflow-hidden
-            top-10
+            right-0
+            top-11
             text-sm
         ">
             <div className="flex flex-col cursor-pointer">
@@ -28,4 +29,4 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({
     )
 }
 
-export default ProjectsDropdown;
+export default ProfileDropdown;

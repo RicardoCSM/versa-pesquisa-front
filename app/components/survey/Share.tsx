@@ -2,12 +2,12 @@
 
 import Title from "../Title";
 
-const Integrations = () => {
+const Share = () => {
     return (
         <div className=" md:pt-[65px]">
-        <Title title="Integrations"/>
+        <Title title="Share"/>
         </div>
     )
 }
 
-export default Integrations;
+export default Share;
