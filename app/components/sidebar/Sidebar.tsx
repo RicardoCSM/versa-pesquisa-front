@@ -1,7 +1,5 @@
 'use client';
 
-import { FaUser } from "react-icons/fa";
-import SidebarMenuItem from "./SidebarMenuItem";
 import { useEffect, useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
@@ -31,18 +29,18 @@ const Sidebar: React.FC<SidebarProps> = ({
             <HiOutlineMenuAlt2
                 onClick={toggleSidebar}
                 size={32}
-                className={`text-gray-500 mx-auto my-3 md:hidden cursor-pointer ${sidebarOpen ? 'hidden' : 'flex transition-opacity duration-500'}`}
+                className={`text-gray-500 mx-auto my-3 md:hidden cursor-pointer ${sidebarOpen ? 'hidden' : 'flex'}`}
             />
-            <div className={`w-full md:fixed md:w-[238px] transition-transform duration-500 ${sidebarOpen ? 'sm:translate-x-0 md:h-screen' : '-translate-x-full hidden'} border-r border-b md:border-b-0 border-gray-500`} aria-label="Sidebar">
+            <div className={`w-full md:fixed md:w-[238px] ${sidebarOpen ? 'md:h-screen' : 'hidden'} md:border-r border-b md:border-b-0 border-gray-500`} aria-label="Sidebar">
                 <div className="h-full px-3 py-4 md:mt-[65px] overflow-y-auto bg-[#F8F2E2]">
-                    <ul className="space-y-6 mt-8 font-medium">
+                    <div className="space-y-6 font-medium">
                         {children}
                         <AiOutlineCloseCircle
                             onClick={toggleSidebar}
                             size={32}
                             className="text-gray-500 m-auto flex md:hidden cursor-pointer"
                         />
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>

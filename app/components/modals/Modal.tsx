@@ -118,7 +118,7 @@ const Modal: React.FC<ModalProps> = ({
                                 flex 
                                 flex-col 
                                 w-full 
-                                bg-white 
+                                bg-[#F8F2E2]
                                 outline-none 
                                 focus:outline-none
                             "

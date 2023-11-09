@@ -32,9 +32,9 @@ const HomeMenu = () => {
                 <NavbarButton onClick={registerModal.onOpen} label="Sign Up"/>
                 
                 <NavbarToggle>
-                    <MenuItem onClick={() => {}} label="About" aria-label="About"/>
-                    <MenuItem onClick={() => {}} label="Sign In" aria-label="Sign In"/>
-                    <MenuItem onClick={() => {}} label="Sign Up" aria-label="Sign Up"/>
+                    <MenuItem onClick={() => window.location.href = '/about'} label="About" aria-label="About"/>
+                    <MenuItem onClick={loginModal.onOpen} label="Sign In" aria-label="Sign In"/>
+                    <MenuItem onClick={registerModal.onOpen} label="Sign Up" aria-label="Sign Up"/>
                 </NavbarToggle>
             </div>
         </div>
