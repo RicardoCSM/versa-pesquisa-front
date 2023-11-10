@@ -35,9 +35,9 @@ const VisualSidebar = () => {
 
     return (
         <div>
-            <div className="md:border-x border-gray-500 md:h-screen md:fixed">
-                <div className="w-full p-3 md:w-[130px] h-full border-b md:border-b-0 border-gray-500">
-                    <div className="flex md:flex-col gap-6 md:pt-[60px]">
+            <div className="lg:border-x border-gray-500 lg:h-screen lg:fixed">
+                <div className="w-full p-3 lg:w-[130px] h-full border-b lg:border-b-0 border-gray-500">
+                    <div className="flex lg:flex-col gap-6 lg:pt-[60px]">
                         <SidebarMenuItem
                             activeSidebar={activeVisualSidebar}
                             onClick={() => handleVisualSidebarChange("layout")}
@@ -61,7 +61,7 @@ const VisualSidebar = () => {
                     </div>
                 </div>
             </div>
-            <div className="md:ml-[130px] w-full md:w-[320px]">
+            <div className="lg:ml-[130px] w-full lg:w-[320px]">
                 {content}
             </div>
         </div>

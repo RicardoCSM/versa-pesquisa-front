@@ -59,11 +59,6 @@ const Integrations = () => {
                         <Integration />
                         <Integration />
                         <Integration />
-                        <Integration />
-                        <Integration />
-                        <Integration />
-                        <Integration />
-                        <Integration />
                     </div>
                 </Container>
             </div>

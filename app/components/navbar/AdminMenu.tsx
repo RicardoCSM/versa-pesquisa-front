@@ -2,8 +2,7 @@
 
 import { AiOutlineShareAlt } from "react-icons/ai"
 import { BsQuestionCircle,} from "react-icons/bs";
-import { FaUserCircle} from "react-icons/fa";
-import React, { useCallback, useState } from "react";
+import React from "react";
 import NavbarToggle from "./NavbarToggle";
 import MenuItem from "./MenuItem";
 import NavbarLink from "../links/NavbarLink";
