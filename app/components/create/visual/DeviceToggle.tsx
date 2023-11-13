@@ -15,7 +15,7 @@ const DeviceToggle = () => {
   return (
     <div>
       <div className="flex justify-center w-full">
-        <div className="flex justify-center p-1 gap-3 w-1/3">
+        <div className="flex justify-center p-4 gap-3 w-1/3">
           <AiOutlineMobile
             size={25}
             className={`cursor-pointer ${

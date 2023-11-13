@@ -2,27 +2,19 @@
 
 import React, { useState } from 'react';
 import SidebarMenuItem from '../../sidebar/SidebarMenuItem';
-import Layout from './Layout';
-import General from './General';
-import Style from './Style';
-import Logo from './Logo';
-import Background from './Background';
+import Text from './sidebar/Text';
+import Logo from './sidebar/Logo';
+import Background from './sidebar/Background';
 
 const VisualSidebar = () => {
-    const [activeVisualSidebar, setActiveVisualSidebar] = useState<string>('layout');
-    const [content, setContent] = useState<JSX.Element>(<Layout />);
+    const [activeVisualSidebar, setActiveVisualSidebar] = useState<string>('text');
+    const [content, setContent] = useState<JSX.Element>(<Text />);
 
     const handleVisualSidebarChange = (visualSidebarName: string) => {
         setActiveVisualSidebar(visualSidebarName);
         switch (visualSidebarName) {
-            case "layout":
-                setContent(<Layout />);
-                break;
-            case "general":
-                setContent(<General />);
-                break;
-            case "style":
-                setContent(<Style />);
+            case "text":
+                setContent(<Text />);
                 break;
             case "logo":
                 setContent(<Logo />);
@@ -40,16 +32,8 @@ const VisualSidebar = () => {
                     <div className="flex lg:flex-col gap-6 lg:pt-[60px]">
                         <SidebarMenuItem
                             activeSidebar={activeVisualSidebar}
-                            onClick={() => handleVisualSidebarChange("layout")}
-                            label="Layout" />
-                        <SidebarMenuItem
-                            activeSidebar={activeVisualSidebar}
-                            onClick={() => handleVisualSidebarChange("general")}
-                            label="General" />
-                        <SidebarMenuItem
-                            activeSidebar={activeVisualSidebar}
-                            onClick={() => handleVisualSidebarChange("style")}
-                            label="Style" />
+                            onClick={() => handleVisualSidebarChange("text")}
+                            label="Text" />
                         <SidebarMenuItem
                             activeSidebar={activeVisualSidebar}
                             onClick={() => handleVisualSidebarChange("logo")}
