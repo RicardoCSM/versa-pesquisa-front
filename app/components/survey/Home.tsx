@@ -6,7 +6,6 @@ import Title from "../Title";
 import { GrAddCircle } from "react-icons/gr";
 
 const Home = () => {
-
     return (
         <div className="md:pt-[65px]">
             <Title title="Dashboard" />

@@ -1,10 +1,10 @@
 'use client';
 
-import SelectInput from "@/app/components/inputs/SelectInput";
+import SelectInput from "../../../inputs/SelectInput";
 import TextInput from "../../../inputs/TextInput";
 import SidebarTitle from "../../../sidebar/SidebarTitle";
 import Button from "@/app/components/buttons/Button";
-import CheckInput from "@/app/components/inputs/CheckInput";
+import CheckInput from "../../../inputs/CheckInput";
 import { IoMdAdd } from "react-icons/io";
 import { BsPencil } from "react-icons/bs";
 

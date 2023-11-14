@@ -1,39 +1,32 @@
 'use client';
 
+import { useState } from "react";
 import Title from "../Title";
 import Button from "../buttons/Button";
 import SidebarMenuItem from "../sidebar/SidebarMenuItem";
+import General from "./settings/General";
+import Responses from "./settings/Responses";
+import Security from "./settings/Security";
+import CheckInput from "../inputs/CheckInput";
 
 const CreateSettings = () => {
 
     return (
-        <div className="flex flex-col lg:flex-row w-full">
-            <div className="w-full lg:w-[71.7%] border-b lg:border-b-0 border-gray-500">
+        <div className="flex flex-col md:flex-row w-full">
+            <div className="w-full">
                 <Title title="Settings" />
-                <div className="flex justify-center w-full">
-
-                    <div className="lg:fixed bottom-0 flex p-3 gap-3 w-1/3">
+                <div className="flex flex-col items-center w-full">
+                    <div className="flex flex-col w-2/4 mt-5 gap-3">
+                        <CheckInput label="Create test" bigger/>
+                        <CheckInput label="Collect email addresses" bigger/>
+                        <CheckInput label="Send participants a copy of their responses" bigger/>
+                        <CheckInput label="Make questions mandatory by default" bigger/>
+                        <CheckInput label="Limit to 1 answer" bigger/>
+                        <CheckInput label="Show link to send another answer" bigger/>
+                    </div>
+                    <div className="fixed bottom-0 flex p-3 gap-3 w-1/3">
                         <Button small outline label="Revert" />
                         <Button small label="Apply" />
-                    </div>
-                </div>
-            </div>
-            <div className="lg:w-[320px]">
-                <div className="border-l-0 lg:border-l lg:fixed lg:h-screen border-gray-500"></div>
-                <div className="lg:mx-auto p-3 lg:mt-[65px] lg:w-2/3">
-                    <div className="flex flex-row lg:flex-col lg:px-3 gap-6">
-                        <SidebarMenuItem
-                            activeSidebar={""}
-                            onClick={() => {}}
-                            label="General" />
-                        <SidebarMenuItem
-                            activeSidebar={""}
-                            onClick={() => {}}
-                            label="Responses" />
-                        <SidebarMenuItem
-                            activeSidebar={""}
-                            onClick={() => {}}
-                            label="Security" />
                     </div>
                 </div>
             </div>

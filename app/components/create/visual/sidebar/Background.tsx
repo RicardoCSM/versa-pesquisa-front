@@ -1,10 +1,10 @@
 'use client';
 
-import SelectInput from "@/app/components/inputs/SelectInput";
-import ColorInput from "@/app/components/inputs/ColorInput";
+import SelectInput from "../../../inputs/SelectInput";
+import ColorInput from "../../../inputs/ColorInput";
 import SidebarTitle from "../../../sidebar/SidebarTitle";
 import Button from "@/app/components/buttons/Button";
-import FileInput from "@/app/components/inputs/FileInput";
+import FileInput from "../../../inputs/FileInput";
 
 const Background = () => {
     return (

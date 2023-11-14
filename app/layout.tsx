@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   description: 'Crie e gerencie suas pesquisa com o Versa Pesquisa!',
 }
 
-
 export default function RootLayout({
   children,
 }: {

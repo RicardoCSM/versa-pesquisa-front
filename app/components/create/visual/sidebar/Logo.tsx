@@ -2,7 +2,7 @@
 
 import Button from "@/app/components/buttons/Button";
 import SidebarTitle from "../../../sidebar/SidebarTitle";
-import FileInput from "@/app/components/inputs/FileInput";
+import FileInput from "../../../inputs/FileInput";
 
 const Logo = () => {
     return (
