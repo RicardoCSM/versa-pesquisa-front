@@ -3,11 +3,11 @@
 const Summary = () => {
 
     return (
-        <div className="flex flex-col w-3/4 min-h-[250px] border border-[#1565C0] rounded-lg">
+        <div className="flex flex-col w-3/4 min-h-[250px] border border-[#1565C0] rounded-lg mb-6">
             <div className="flex justify-center p-3 w-full text-xl">
                 Survey Stats
             </div>
-            <div className="flex flex-row p-2 mx-7 gap-3 justify-around">
+            <div className="flex flex-col md:flex-row p-2 mx-7 gap-3 justify-around">
                 <div className="border-l-8 border-[#1565C0] h-[150px]">
                     <div className="p-2">
                         <div className="text-2xl">50</div>

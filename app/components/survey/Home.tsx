@@ -12,7 +12,7 @@ const Home = () => {
             <Container>
                 <div className="flex mt-7">
                     <div className="w-full">
-                        <div className="relative overflow-x-auto min-h-[350px] border border-gray-700 rounded-xl">
+                        <div className="overflow-x-auto min-h-[350px] border border-gray-700 rounded-xl">
                             <table className="w-full text-sm text-left text-gray-700">
                                 <thead className="text-xs text-gray-700 uppercase border-b border-gray-700">
                                     <tr>
