@@ -8,7 +8,7 @@ interface CheckInputProps {
 
 const CheckInput: React.FC<CheckInputProps> = ({ id, label, bigger }) => {
     return (
-        <div className={`flex items-center  ${bigger ? 'w-full' : 'w-[200px]'} gap-2`}>
+        <div aria-label={label} className={`flex items-center  ${bigger ? 'w-full' : 'w-[200px]'} gap-2`}>
             <input
                 id={id}
                 type="checkbox"

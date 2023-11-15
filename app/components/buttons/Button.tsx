@@ -25,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
 
     return (
         <button
+            aria-label={label}
             onClick={onClick}
             disabled={disabled}
             type={type}

@@ -33,16 +33,16 @@ const Question: React.FC<QuestionProps> = ({
     return (
         <div className="flex flex-col w-full">
             <div className="flex gap-2">
-                <div className={`text-justify ${obrigatory ? 'w-4/5' : 'w-full'}`}>
+                <div className={`text-justify ${obrigatory ? 'w-4/5' : 'w-full'}`} aria-label={title}>
                     {title}
                 </div>
                 {obrigatory && (
-                    <div className="flex w-1/5 justify-end text-sm text-red-500 pt-1">
+                    <div className="flex w-1/5 justify-end text-sm text-red-500 pt-1" aria-label="Required">
                         Required
                     </div>
                 )}
                 {isCreateMode && (
-                <div className="cursor-pointer" onClick={onToggleEdit}>
+                <div className="cursor-pointer" onClick={onToggleEdit} aria-label="Edit">
                     <BsPencil />
                 </div>
                 )}

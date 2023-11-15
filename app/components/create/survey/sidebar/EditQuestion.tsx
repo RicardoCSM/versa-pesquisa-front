@@ -9,11 +9,16 @@ import { IoMdAdd } from "react-icons/io";
 import { BsPencil } from "react-icons/bs";
 
 const EditQuestion = () => {
+    const typeOptions = [
+        { value: 1, label: "Multiple Choice" },
+        { value: 2, label: "Open Ended" },
+    ];
+
     return (
         <div>
             <SidebarTitle bigger label="Question"/>
             <div className="w-full flex flex-col items-center p-3 gap-3">
-                <SelectInput label="Type"/>
+                <SelectInput label="Type" options={typeOptions}/>
                 <TextInput label="Title"/>
                 <CheckInput label="Obrigatory"/>
                 <div className="flex flex-col w-[200px] gap-2">

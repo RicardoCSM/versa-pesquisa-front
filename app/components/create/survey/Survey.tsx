@@ -47,7 +47,8 @@ const Survey: React.FC<SurveyProps> = ({
             </div>
             {isCreateMode &&
               <div className="flex justify-center pt-2">
-                <div 
+                <div
+                 aria-label="Add new question"
                   className="flex gap-2 items-center align-middle cursor-pointer"
                   onClick={() => onToggleEdit("newQuestion")}>
                   <GrAddCircle />

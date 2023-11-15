@@ -8,7 +8,7 @@ interface FileInputProps {
 
 const FileInput: React.FC<FileInputProps> = ({ id, label }) => {
     return (
-        <div className="relative cursor-pointer w-[200px]">
+        <div aria-label={label} className="relative cursor-pointer w-[200px]">
             <input
                 className="absolute block py-2 px-4 w-full opacity-0"
                 type="file"

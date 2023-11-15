@@ -1,12 +1,7 @@
 'use client';
 
-import { useState } from "react";
 import Title from "../Title";
 import Button from "../buttons/Button";
-import SidebarMenuItem from "../sidebar/SidebarMenuItem";
-import General from "./settings/General";
-import Responses from "./settings/Responses";
-import Security from "./settings/Security";
 import CheckInput from "../inputs/CheckInput";
 
 const CreateSettings = () => {

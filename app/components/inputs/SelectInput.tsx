@@ -1,24 +1,28 @@
-import React, { useState } from "react";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import React from "react";
+
+interface SelectOption {
+    value: any;
+    label: string;
+}
 
 interface SelectInputProps {
     id?: string;
     label: string;
+    options: SelectOption[];
 }
 
-const SelectInput: React.FC<SelectInputProps> = ({ id, label }) => {
-    const [selectedColor, setSelectedColor] = useState("#1565C0");
-
-    const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedColor(e.target.value);
-    };
+const SelectInput: React.FC<SelectInputProps> = ({ id, label,options }) => {
 
     return (
-        <div>
+        <div aria-label={label}>
             <label className="text-gray-700">{label}</label>
             <div className="w-[200px]">
                 <select id="countries" className="bg-[#F8F2E2] border border-[#1565C0] text-gray-700 rounded-md block w-full p-1">
-                    <option selected>Roboto</option>
+                {options.map((option) => (
+                    <option aria-label={option.label} key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
                 </select>
             </div>
         </div>

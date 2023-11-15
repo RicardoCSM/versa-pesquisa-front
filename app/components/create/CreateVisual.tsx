@@ -1,6 +1,5 @@
 'use client';
 
-import Button from "../buttons/Button";
 import DeviceToggle from "./visual/DeviceToggle";
 import VisualSidebar from "./visual/VisualSidebar";
 

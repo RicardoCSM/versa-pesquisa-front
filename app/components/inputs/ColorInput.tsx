@@ -14,7 +14,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ id, label }) => {
     };
 
     return (
-        <div>
+        <div aria-label={label}>
             <div className="text-gray-700">{label}</div>
             <div className="w-[200px] rounded-sm items-center flex border-2 border-[#1565C0]">
                 <input

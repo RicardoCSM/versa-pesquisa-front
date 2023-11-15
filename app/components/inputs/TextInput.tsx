@@ -8,7 +8,7 @@ interface TextInputProps {
 
 const TextInput: React.FC<TextInputProps> = ({ id, label, bigger }) => {
     return (
-        <div>
+        <div aria-label={label}>
             <div className="text-gray-700">{label}</div>
             <input
                 id={id}

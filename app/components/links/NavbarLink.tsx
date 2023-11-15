@@ -16,6 +16,7 @@ const NavbarLink: React.FC<NavbarLinkProps> = ({
   const isActive = activeMenu === label.toLowerCase();
   return (
     <a 
+      aria-label={label}
       className={`flex items-center gap-2 cursor-pointer ${isActive ? 'text-[#1565C0]' : ''}`} 
       onClick={() => onMenuChange(label.toLowerCase())}>
             {label}
