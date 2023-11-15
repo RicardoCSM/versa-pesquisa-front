@@ -19,7 +19,7 @@ const CreateSettings = () => {
                         <CheckInput label="Limit to 1 answer" bigger/>
                         <CheckInput label="Show link to send another answer" bigger/>
                     </div>
-                    <div className="fixed bottom-0 flex p-3 gap-3 w-1/3">
+                    <div className="md:fixed bottom-0 flex p-3 gap-3 w-1/3">
                         <Button small outline label="Revert" />
                         <Button small label="Apply" />
                     </div>

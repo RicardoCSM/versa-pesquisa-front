@@ -37,7 +37,7 @@ const Question: React.FC<QuestionProps> = ({
                     {title}
                 </div>
                 {obrigatory && (
-                    <div className="flex w-1/5 justify-end text-sm text-red-500 pt-1" aria-label="Required">
+                    <div className="flex md:w-1/5 justify-end text-sm text-red-500 pt-1" aria-label="Required">
                         Required
                     </div>
                 )}
