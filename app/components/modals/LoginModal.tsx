@@ -1,8 +1,14 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import { useCallback, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm
+} from 'react-hook-form';
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import Modal from "./Modal";
@@ -14,6 +20,44 @@ const LoginModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: {
+      errors,
+    }
+  } = useForm<FieldValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+    }
+  })
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    setIsLoading(true);
+    signIn('credentials', {
+      ...data,
+      redirect: false
+    })
+      .then((callback) => {
+        setIsLoading(false);
+        if (callback?.error) {
+          setError('email', {
+            type: 'manual',
+            message: callback.error,
+          });
+          setError('password', {
+            type: 'manual',
+            message: callback.error,
+          });
+        } else {
+          window.location.href = "/survey";
+          loginModal.onClose();
+        }
+      })
+  }
 
   const onToggle = useCallback(() => {
     loginModal.onClose();
@@ -28,15 +72,19 @@ const LoginModal = () => {
       />
       <Input
         id="email"
-        placehoder="Email"
+        placeholder="Email"
         disabled={isLoading}
+        register={register}
+        errors={errors}
         required
       />
       <Input
         id="password"
-        placehoder="Password"
+        placeholder="Password"
         type="password"
         disabled={isLoading}
+        register={register}
+        errors={errors}
         required
       />
     </div>
@@ -45,29 +93,29 @@ const LoginModal = () => {
   const footerContent = (
     <div className="flex flex-col gap-2 mt-3">
       <hr />
-      <Button 
-        outline 
+      <Button
+        outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => { }}
       />
-      <Button 
-        outline 
+      <Button
+        outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => { }}
       />
       <div className="
       text-neutral-500 text-center mt-4 font-light">
         <p>First time using Versa Pesquisa?
-          <span 
-            onClick={onToggle} 
+          <span
+            onClick={onToggle}
             className="
               text-neutral-800
               cursor-pointer 
               hover:[#1565C0]
             "
-            > Create an account</span>
+          > Create an account</span>
         </p>
       </div>
     </div>
@@ -80,7 +128,7 @@ const LoginModal = () => {
       title="Login"
       actionLabel="Continue"
       onClose={loginModal.onClose}
-      onSubmit={() => {}}
+      onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
     />

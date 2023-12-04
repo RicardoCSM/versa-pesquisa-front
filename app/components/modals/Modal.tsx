@@ -40,7 +40,6 @@ const Modal: React.FC<ModalProps> = ({
         if (disabled) {
             return;
         }
-
         setShowModal(false);
         setTimeout(() => {
             onClose();
@@ -51,7 +50,6 @@ const Modal: React.FC<ModalProps> = ({
         if (disabled) {
             return;
         }
-
         onSubmit();
     }, []);
 
@@ -59,7 +57,6 @@ const Modal: React.FC<ModalProps> = ({
         if (disabled || !secondaryAction) {
             return;
         }
-
         secondaryAction();
     }, [disabled, secondaryAction]);
 
@@ -138,7 +135,7 @@ const Modal: React.FC<ModalProps> = ({
                                     className="
                                         p-1
                                         border-0
-                                        hover:opacity-0
+                                        hover:opacity-80
                                         transition
                                         absolute
                                         left-9

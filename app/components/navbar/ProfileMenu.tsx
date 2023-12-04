@@ -4,6 +4,7 @@ import React, { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import { FaUserCircle } from "react-icons/fa";
 import ProfileDropdown from "../buttons/ProfileDropdown";
+import { signOut } from "next-auth/react";
 
 interface ProfileMenuProps {
     profileAction: () => void
@@ -16,6 +17,10 @@ const AdminDropdown: React.FC<ProfileMenuProps> = ({ profileAction }) => {
         setIsOpen((value) => !value);
     }, [])
 
+    const handleLogout =  () => {
+        signOut({ redirect: true, callbackUrl: '/' });
+    };
+
     return (
         <>
             <div
@@ -26,7 +31,7 @@ const AdminDropdown: React.FC<ProfileMenuProps> = ({ profileAction }) => {
             {isOpen && (
                 <ProfileDropdown>
                     <MenuItem onClick={profileAction} label="Profile" aria-label="Profile" />
-                    <MenuItem onClick={() => { }} label="Log Out" aria-label="Log Out" />
+                    <MenuItem onClick={handleLogout} label="Log Out" aria-label="Log Out" />
                 </ProfileDropdown>
             )}
         </>

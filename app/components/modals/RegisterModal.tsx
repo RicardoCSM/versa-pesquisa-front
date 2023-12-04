@@ -3,6 +3,12 @@
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
+import axios from 'axios';
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm
+} from 'react-hook-form';
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
@@ -15,7 +21,41 @@ const RegisterModal= () => {
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: {
+      errors,
+    }
+  } = useForm<FieldValues>({
+    defaultValues: {
+      name: '',
+      lastname: '',
+      email: '',
+      password: '',
+      password_repeat: ''
+    }
+  })
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {    
+    setIsLoading(true);
+    axios.post(`${process.env.API_BASE_URL}user/signup`, data)
+    .then((response) => {
+      registerModal.onClose();
+    })
+    .catch((e) => {
+      const apiErrors = e.response.data.errors;
+      Object.keys(apiErrors).forEach((field) => {
+        setError(field, {
+          type: 'manual',
+          message: apiErrors[field][0],
+        });
+      });
+    })
+    .finally(() => {
+      setIsLoading(false);
+    })
   }
 
   const onToggle = useCallback(() => {
@@ -30,36 +70,46 @@ const RegisterModal= () => {
       />
       <div className="flex gap-2">
         <Input
-          id="first-name"
-          placehoder="First Name"
+          id="name"
+          placeholder="Name"
           disabled={isLoading}
+          register={register}
+          errors={errors}
           required
         />
         <Input
-          id="last-name"
-          placehoder="Last Name"
+          id="lastname"
+          placeholder="Last Name"
           disabled={isLoading}
+          register={register}
+          errors={errors}
           required
         />
       </div>
       <Input
         id="email"
-        placehoder="Email"
+        placeholder="Email"
         disabled={isLoading}
+        register={register}
+        errors={errors}
         required
       />
       <Input
         id="password"
-        placehoder="Password"
+        placeholder="Password"
         type="password"
         disabled={isLoading}
+        register={register}
+        errors={errors}
         required
       />
       <Input
-        id="confirm-password"
-        placehoder="Confirm Password"
+        id="password_repeat"
+        placeholder="Confirm Password"
         type="password"
         disabled={isLoading}
+        register={register}
+        errors={errors}
         required
       />
     </div>
@@ -109,7 +159,7 @@ const RegisterModal= () => {
       title="Register"
       actionLabel="Continue"
       onClose={registerModal.onClose}
-      onSubmit={() => {}}
+      onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
     />
