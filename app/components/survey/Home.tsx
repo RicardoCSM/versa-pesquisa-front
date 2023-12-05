@@ -1,11 +1,44 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Container from "../Container";
 import Pagination from "../Pagination";
 import Title from "../Title";
 import { GrAddCircle } from "react-icons/gr";
+import ISurvey from "@/app/interfaces/ISurvey";
+import surveysService from "@/app/services/surveys.service";
+import getAccessToken from '@/app/actions/getAccessToken';
+import axios from "axios";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const Home = () => {
+    const [surveys, setSurveys] = useState<ISurvey[]>([]);
+    const accessToken = getAccessToken();
+
+    useEffect(() => {
+        fetchSurveys();
+    });
+
+    const getSession = async () => {
+        return await getServerSession(authOptions);
+    }
+    
+    const fetchSurveys = async () => {
+        try {
+            const session = await getServerSession(authOptions);
+            console.log(session?.accessToken);
+            const response = await axios.get(`http://localhost:8000/api/surveys`, {
+                headers: {
+                'Authorization': `Bearer ${accessToken}`
+                }
+            });
+            setSurveys(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
     return (
         <div className="md:pt-[65px]">
             <Title title="Dashboard" />
@@ -23,10 +56,10 @@ const Home = () => {
                                             Description
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Questions
+                                            Status
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Answers
+                                            Created At
                                         </th>
                                         <th scope="col" className="px-6 py-3">
                                             
@@ -37,18 +70,19 @@ const Home = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {surveys.map((survey) => (
                                     <tr>
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            Survey 1
+                                            {survey.title}
                                         </th>
                                         <td className="px-6 py-4">
-                                            My survey
+                                            {survey.description}
                                         </td>
                                         <td className="px-6 py-4">
-                                            25
+                                            {survey.status}
                                         </td>
                                         <td className="px-6 py-4">
-                                            160
+                                            {survey.created_at}
                                         </td>
                                         <td className="px-6 py-4">
                                             <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
@@ -57,6 +91,7 @@ const Home = () => {
                                             <a href="#" className="font-medium text-red-600 hover:underline">Delete</a>
                                         </td>
                                     </tr> 
+                                ))}
                                 </tbody>
                             </table>
                         </div>
