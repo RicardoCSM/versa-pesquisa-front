@@ -15,6 +15,7 @@ import Modal from "./Modal";
 import Input from "../inputs/Input";
 import Heading from "../Heading";
 import Button from "../buttons/Button"
+import authService from '@/app/services/auth.service';
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
@@ -37,26 +38,15 @@ const LoginModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
-    signIn('credentials', {
-      ...data,
-      redirect: false
-    })
-      .then((callback) => {
-        setIsLoading(false);
-        if (callback?.error) {
-          setError('email', {
-            type: 'manual',
-            message: callback.error,
-          });
-          setError('password', {
-            type: 'manual',
-            message: callback.error,
-          });
-        } else {
-          window.location.href = "/survey";
-          loginModal.onClose();
-        }
-      })
+    const {success, errors} = await authService.login({'email': data.email, 'password': data.password});
+    if (success) {
+      setIsLoading(false);
+      window.location.href = '/survey';
+    } else {
+      setIsLoading(false);
+      setError('email', {type: 'manual'});
+      setError('password', {type: 'manual'});
+    }
   }
 
   const onToggle = useCallback(() => {

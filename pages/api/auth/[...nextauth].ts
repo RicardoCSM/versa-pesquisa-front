@@ -11,7 +11,7 @@ export const authOptions: AuthOptions = {
                 password: { label: 'password', type: 'password' }
             },
             authorize(credentials) {
-                return axios.post(`${process.env.API_BASE_URL}user/login`, credentials)
+                return axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}user/login`, credentials)
                         .then((response) => {
                             const user = response.data;
                             return user;
@@ -28,18 +28,6 @@ export const authOptions: AuthOptions = {
     debug: process.env.NODE_ENV === 'development',
     session: {
         strategy: 'jwt'
-    },
-    callbacks: {
-        async jwt({token, user}) {
-            if (user) {
-                token.accessToken = user.access_token;
-            }
-            return token;
-        },
-        async session({session, token}) {
-            session.accessToken = token.accessToken;
-            return session;
-        },
     },
     secret: process.env.NEXTAUTH_SECRET,
 };

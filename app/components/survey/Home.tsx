@@ -7,32 +7,17 @@ import Title from "../Title";
 import { GrAddCircle } from "react-icons/gr";
 import ISurvey from "@/app/interfaces/ISurvey";
 import surveysService from "@/app/services/surveys.service";
-import getAccessToken from '@/app/actions/getAccessToken';
-import axios from "axios";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const Home = () => {
     const [surveys, setSurveys] = useState<ISurvey[]>([]);
-    const accessToken = getAccessToken();
 
     useEffect(() => {
         fetchSurveys();
-    });
-
-    const getSession = async () => {
-        return await getServerSession(authOptions);
-    }
+    }, []);
     
     const fetchSurveys = async () => {
         try {
-            const session = await getServerSession(authOptions);
-            console.log(session?.accessToken);
-            const response = await axios.get(`http://localhost:8000/api/surveys`, {
-                headers: {
-                'Authorization': `Bearer ${accessToken}`
-                }
-            });
+            const response = await surveysService.get();
             setSurveys(response.data);
         } catch (error) {
             console.log(error)
@@ -71,7 +56,7 @@ const Home = () => {
                                 </thead>
                                 <tbody>
                                 {surveys.map((survey) => (
-                                    <tr>
+                                    <tr key={survey.id}>
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             {survey.title}
                                         </th>

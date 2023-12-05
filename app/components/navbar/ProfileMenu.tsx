@@ -4,7 +4,7 @@ import React, { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import { FaUserCircle } from "react-icons/fa";
 import ProfileDropdown from "../buttons/ProfileDropdown";
-import { signOut } from "next-auth/react";
+import authService from "@/app/services/auth.service";
 
 interface ProfileMenuProps {
     profileAction: () => void
@@ -18,7 +18,7 @@ const AdminDropdown: React.FC<ProfileMenuProps> = ({ profileAction }) => {
     }, [])
 
     const handleLogout =  () => {
-        signOut({ redirect: true, callbackUrl: '/' });
+        authService.logout();
     };
 
     return (

@@ -1,16 +1,15 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import getAccessToken from '../actions/getAccessToken';
+import authService from './auth.service';
 
-const API_ENDPOINT: string = process.env.API_BASE_URL || 'http://localhost:8000/';
+const API_ENDPOINT: string = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000/';
 const config: AxiosRequestConfig = {
-  baseURL: `${API_ENDPOINT}api/`,
+  baseURL: `${API_ENDPOINT}`,
 };
 
 const httpClient: AxiosInstance = axios.create(config);
-const accessToken = getAccessToken();
 
 const authInterceptor = (config: InternalAxiosRequestConfig) => {
-  config.headers.Authorization = `Bearer ${accessToken}`;
+  config.headers.Authorization = `Bearer ${authService.getToken()}`;
   return config;
 };
 

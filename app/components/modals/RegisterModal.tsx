@@ -15,6 +15,7 @@ import Modal from "./Modal";
 import Input from "../inputs/Input";
 import Heading from "../Heading";
 import Button from "../buttons/Button";
+import authService from "@/app/services/auth.service";
 
 const RegisterModal= () => {
   const registerModal = useRegisterModal();
@@ -38,24 +39,28 @@ const RegisterModal= () => {
     }
   })
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {    
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {    
     setIsLoading(true);
-    axios.post(`${process.env.API_BASE_URL}user/signup`, data)
-    .then((response) => {
-      registerModal.onClose();
-    })
-    .catch((e) => {
-      const apiErrors = e.response.data.errors;
-      Object.keys(apiErrors).forEach((field) => {
+    const {success, errors} = await authService.register({
+      'name': data.name,
+      'lastname': data.lastname,
+      'email': data.email,
+      'password': data.password,
+      'password_repeat': data.password_repeat,
+    });
+    if (success) {
+        setIsLoading(false);
+        authService.login({'email': data.email, 'password': data.password})
+        window.location.href = '/survey';
+      } else {
+      setIsLoading(false);
+      Object.keys(errors).forEach((field) => {
         setError(field, {
           type: 'manual',
-          message: apiErrors[field][0],
+          message: errors[field][0],
         });
       });
-    })
-    .finally(() => {
-      setIsLoading(false);
-    })
+    }
   }
 
   const onToggle = useCallback(() => {

@@ -6,7 +6,7 @@ const surveysService = {
     return httpClient.post('surveys', survey)
   },
   get() {
-    return httpClient.get('surveys?sort=-created_at')
+    return httpClient.get('surveys')
   },
   update(survey: ISurvey) {
     return httpClient.put(`surveys/${survey.id}`, survey)
