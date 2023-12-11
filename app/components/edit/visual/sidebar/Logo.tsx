@@ -3,8 +3,13 @@
 import Button from "@/app/components/buttons/Button";
 import SidebarTitle from "../../../sidebar/SidebarTitle";
 import FileInput from "../../../inputs/FileInput";
+import ITheme from "@/app/interfaces/ITheme";
 
-const Logo = () => {
+interface LogoProps {
+    'theme'?: ITheme | null
+};
+
+const Logo: React.FC<LogoProps> = ({theme}) => {
     return (
         <div>
             <SidebarTitle bigger label="Logo" />

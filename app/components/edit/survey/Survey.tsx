@@ -1,16 +1,19 @@
 'use client';
 
-import React from "react";
+import React, { useEffect } from "react";
 import SurveyHeading from "./SurveyHeading";
 import Question from "./Question";
-import Pagination from "../../Pagination";
 import { GrAddCircle } from "react-icons/gr";
+import ITheme from "@/app/interfaces/ITheme";
+import IQuestion from "@/app/interfaces/IQuestion";
 
 interface SurveyProps {
-  title: string
+  title?: string
   description?: string
   category?: string
-  settings?: JSON
+  settings: []
+  theme?: ITheme | null
+  questions?: IQuestion[] | null 
   type?: string
   status?: string
   onToggleEdit?: (type: string) => void
@@ -18,32 +21,32 @@ interface SurveyProps {
 }
 
 const Survey: React.FC<SurveyProps> = ({
-   title, description, onToggleEdit = () => {}, isCreateMode = false
+   title, description, onToggleEdit = () => {}, isCreateMode = false, theme, questions
 }) => {
+
     return (
-      <div className="flex justify-center">
-        <div className="flex flex-col items-center">
-          <div className="min-h-[550px] w-3/4 md:w-2/3 p-6 border-2 border-[#1565C0] rounded-lg">
+      <div className={`flex justify-center w-full`}>
+        <div className="flex flex-col items-center w-full">
+          <div className={`min-h-[500px] min-w-[80%] p-6 border-2 border-[${theme?.primary_color}] rounded-lg bg-[${theme?.background_color}]`}>
             <SurveyHeading
               title={title}
               description={description}
-              primaryColor="#1565C0"
-              secondaryColor="black"
+              primaryColor={theme?.primary_color}
+              secondaryColor={theme?.secondary_color}
               onToggleEdit={() => onToggleEdit("heading")}
               isCreateMode={isCreateMode}
             />
             <div className="flex flex-col p-2 gap-3">
+            {questions?.map((question) => (
               <Question
-                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed egestas elit. Vivamus vel sodales nulla. Curabitur non leo mauris. Ut risus dui, hendrerit ac pulvinar finibus, commodo sed velit."
+                key={question.id}
+                title={question.title}
+                type={question.type}
                 obrigatory
                 onToggleEdit={() => onToggleEdit("question")}
                 isCreateMode={isCreateMode}
               />
-              <Question
-                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed egestas elit. Vivamus vel sodales nulla. Curabitur non leo mauris. Ut risus dui, hendrerit ac pulvinar finibus, commodo sed velit."
-                onToggleEdit={() => onToggleEdit("question")}
-                isCreateMode={isCreateMode}
-              />
+            ))}
             </div>
             {isCreateMode &&
               <div className="flex justify-center pt-2">

@@ -1,6 +1,5 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
 import { useCallback, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
@@ -16,11 +15,14 @@ import Input from "../inputs/Input";
 import Heading from "../Heading";
 import Button from "../buttons/Button"
 import authService from '@/app/services/auth.service';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -39,13 +41,15 @@ const LoginModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
     const {success, errors} = await authService.login({'email': data.email, 'password': data.password});
+    setIsLoading(false);
     if (success) {
-      setIsLoading(false);
-      window.location.href = '/survey';
+      toast.success('Login successfully!');
+      loginModal.onClose();
+      router.push('/survey');
     } else {
-      setIsLoading(false);
       setError('email', {type: 'manual'});
       setError('password', {type: 'manual'});
+      toast.error('Incorrect email or password!');
     }
   }
 

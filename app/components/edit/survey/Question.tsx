@@ -33,12 +33,12 @@ const Question: React.FC<QuestionProps> = ({
     return (
         <div className="flex flex-col w-full">
             <div className="flex gap-2">
-                <div className={`text-justify ${obrigatory ? 'w-4/5' : 'w-full'}`} aria-label={title}>
+                <div className={`text-justify ${obrigatory ? 'w-[98%]' : 'w-full'}`} aria-label={title}>
                     {title}
                 </div>
                 {obrigatory && (
-                    <div className="flex md:w-1/5 justify-end text-sm text-red-500 pt-1" aria-label="Required">
-                        Required
+                    <div className="flex md:w-[2%] justify-end text-sm text-red-500 pt-1" aria-label="Required">
+                        *
                     </div>
                 )}
                 {isCreateMode && (

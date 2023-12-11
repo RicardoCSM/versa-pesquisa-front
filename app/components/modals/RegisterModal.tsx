@@ -16,6 +16,7 @@ import Input from "../inputs/Input";
 import Heading from "../Heading";
 import Button from "../buttons/Button";
 import authService from "@/app/services/auth.service";
+import toast from "react-hot-toast";
 
 const RegisterModal= () => {
   const registerModal = useRegisterModal();
@@ -48,18 +49,22 @@ const RegisterModal= () => {
       'password': data.password,
       'password_repeat': data.password_repeat,
     });
+    setIsLoading(false);
     if (success) {
-        setIsLoading(false);
-        authService.login({'email': data.email, 'password': data.password})
-        window.location.href = '/survey';
+        registerModal.onClose();
+        toast.success('User registered successfully!');
       } else {
-      setIsLoading(false);
-      Object.keys(errors).forEach((field) => {
-        setError(field, {
-          type: 'manual',
-          message: errors[field][0],
+        Object.keys(errors).forEach((field, index) => {
+          const errorMessage = errors[field][0];
+          setError(field, {
+            type: 'manual',
+            message: errorMessage,
+          });
+
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
         });
-      });
     }
   }
 

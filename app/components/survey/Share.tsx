@@ -1,9 +1,24 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Title from "../Title";
+import useSurveyStore from '@/app/hooks/useSurveyStore';
+import toast from 'react-hot-toast';
 
-const Share = () => {
+interface ShareProps {
+    toggleHome: (menuName: string) => void
+};
+
+const Share: React.FC<ShareProps> = ({toggleHome}) => {
     const [url, setUrl] = useState('http://localhost:3000/view');
+    const selectedSurveyId = useSurveyStore((state) => state.selectedSurveyId);
+    
+    useEffect(() => {
+        if(selectedSurveyId) {
+        } else {
+            toggleHome('home');
+            toast.error('Select a survey first!');
+        }
+    }, []);
 
     const copyToClipboard = async () => {
         try {

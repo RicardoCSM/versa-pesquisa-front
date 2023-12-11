@@ -1,6 +1,6 @@
 'use client'
 
-import Survey from "../components/create/survey/Survey";
+import Survey from "../components/edit/survey/Survey";
 
 const View = () => {
   return (

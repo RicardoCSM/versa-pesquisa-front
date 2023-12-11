@@ -21,7 +21,7 @@ const AdminMenu: React.FC<AdminMenuProps> = ({ activeMenu, onMenuChange }) => {
                 <div className="mx-3 hidden w-full md:grid gap-4 grid-cols-4">
                     <div className="col-span-3 border-x h-8 border-gray-500 flex items-center justify-around">
                         <ProjectsMenu />
-                        <NavbarLink label='Create' aria-label='Create' activeMenu={activeMenu} onMenuChange={onMenuChange} />
+                        <NavbarLink label='Edit' aria-label='Edit' activeMenu={activeMenu} onMenuChange={onMenuChange} />
                         <NavbarLink label='Integrations' aria-label='Integrations' activeMenu={activeMenu} onMenuChange={onMenuChange} />
                         <NavbarLink label='Results' aria-label='Results' activeMenu={activeMenu} onMenuChange={onMenuChange} />
                     </div>
@@ -39,7 +39,7 @@ const AdminMenu: React.FC<AdminMenuProps> = ({ activeMenu, onMenuChange }) => {
                     <ProjectsMenu />
                 </div> 
                 <NavbarToggle>
-                    <MenuItem onClick={() => onMenuChange('create')} label="Create" aria-label="Create"/>
+                    <MenuItem onClick={() => onMenuChange('edit')} label="Create" aria-label="Create"/>
                     <MenuItem onClick={() => onMenuChange('integrations')} label="Integrations" aria-label="Integrations"/>
                     <MenuItem onClick={() => onMenuChange('results')} label="Results" aria-label="Results"/>
                     <hr />

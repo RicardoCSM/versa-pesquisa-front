@@ -7,7 +7,6 @@ import MobileVisual from './MobileVisual';
 
 const DeviceToggle = () => {
   const [activeIcon, setActiveIcon] = useState('desktop');
-
   const handleIconClick = (icon: string) => {
     setActiveIcon(icon);
   };
@@ -34,8 +33,8 @@ const DeviceToggle = () => {
           />
         </div>
       </div>
-      <div className="h-auto md:h-[480px]">
-        {activeIcon === 'mobile' ? <MobileVisual /> : <DesktopVisual />}
+      <div className="h-auto">
+        {activeIcon === 'mobile' ? <MobileVisual/> : <DesktopVisual/>}
       </div>
     </div>
   );

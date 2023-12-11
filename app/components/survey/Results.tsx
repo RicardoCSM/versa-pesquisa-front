@@ -1,15 +1,30 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "../Title";
 import Sidebar from "../sidebar/Sidebar";
 import SidebarMenuItem from "../sidebar/SidebarMenuItem";
 import Summary from "../results/Summary";
 import Questions from "../results/Questions";
+import useSurveyStore from "@/app/hooks/useSurveyStore";
+import toast from "react-hot-toast";
 
-const Results = () => {
+interface ResultsProps {
+    toggleHome: (menuName: string) => void
+};
+
+const Results: React.FC<ResultsProps> = ({toggleHome}) => {
     const [activeSidebar, setActiveSidebar] = useState<string>('summary');
     const [content, setContent] = useState<JSX.Element>(<Summary />);
+    const selectedSurveyId = useSurveyStore((state) => state.selectedSurveyId);
+    
+    useEffect(() => {
+        if(selectedSurveyId) {
+        } else {
+            toggleHome('home');
+            toast.error('Select a survey first!');
+        }
+    }, []);
 
     const handleSidebarChange = (sidebarName: string) => {
         setActiveSidebar(sidebarName);

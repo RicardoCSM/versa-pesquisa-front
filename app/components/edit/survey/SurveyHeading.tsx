@@ -3,10 +3,10 @@
 import { BsPencil } from "react-icons/bs";
 
 interface SurveyHeadingProps {
-  title: string
+  title?: string
   description?: string
-  primaryColor: string
-  secondaryColor: string
+  primaryColor?: string
+  secondaryColor?: string
   onToggleEdit: () => void
   isCreateMode: boolean
 }

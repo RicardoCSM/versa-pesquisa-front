@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 import LoginModal from './components/modals/LoginModal'
 import RegisterModal from './components/modals/RegisterModal'
+import ToasterProvider from './providers/ToasterProvider'
 const roboto = Roboto({ weight:"400", subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-[#F8F2E2] ${roboto.className}`}>
+        <ToasterProvider />
         <LoginModal />
         <RegisterModal />
         {children}

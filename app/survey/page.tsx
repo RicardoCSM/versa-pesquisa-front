@@ -1,41 +1,53 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AdminNavbar from '../components/navbar/AdminNavbar';
 import Home from '../components/survey/Home';
-import Create from '../components/survey/Create';
+import Edit from '../components/survey/Edit';
 import Integrations from '../components/survey/Integrations';
 import Results from '../components/survey/Results';
 import Share from '../components/survey/Share';
 import Profile from '../components/survey/Profile';
+import authService from '../services/auth.service';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const Survey = () => {
   const [activeMenu, setActiveMenu] = useState<string>('home');
-  const [content, setContent] = useState<JSX.Element>(<Home />);
+  const [content, setContent] = useState<JSX.Element>();
+  const router = useRouter();
+  useEffect(() => {
+    if (!authService.isLoggedIn()) {
+      router.push('/');
+      toast.error('You must be logged in to access!');
+    }
+
+    setContent(<Home toggleEdit={handleMenuChange}/>)
+  }, []);
 
   const handleMenuChange = (menuName: string) => {
     setActiveMenu(menuName);
     switch (menuName) {
       case 'home':
-        setContent(<Home />);
+        setContent(<Home toggleEdit={handleMenuChange}/>);
         break;
       case 'share':
-        setContent(<Share />);
+        setContent(<Share toggleHome={handleMenuChange}/>);
         break;
       case 'profile':
           setContent(<Profile />);
           break;
-      case 'create':
-        setContent(<Create />);
+      case 'edit':
+        setContent(<Edit toggleHome={handleMenuChange}/>);
         break;
       case 'integrations':
-        setContent(<Integrations />);
+        setContent(<Integrations toggleHome={handleMenuChange}/>);
         break;
       case 'results':
-        setContent(<Results />);
+        setContent(<Results toggleHome={handleMenuChange}/>);
         break;
       default:
-        setContent(<Home />);
+        setContent(<Home toggleEdit={handleMenuChange}/>);
     }
   };
 

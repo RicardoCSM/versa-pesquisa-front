@@ -8,28 +8,28 @@ import Background from './sidebar/Background';
 
 const VisualSidebar = () => {
     const [activeVisualSidebar, setActiveVisualSidebar] = useState<string>('text');
-    const [content, setContent] = useState<JSX.Element>(<Text />);
+    const [content, setContent] = useState<JSX.Element>(<Text/>);
 
     const handleVisualSidebarChange = (visualSidebarName: string) => {
         setActiveVisualSidebar(visualSidebarName);
         switch (visualSidebarName) {
             case "text":
-                setContent(<Text />);
+                setContent(<Text/>);
                 break;
             case "logo":
-                setContent(<Logo />);
+                setContent(<Logo/>);
                     break;
             case "background":
-                setContent(<Background />);
+                setContent(<Background/>);
                      break;
         }
     };
 
     return (
         <div>
-            <div className="lg:border-x border-gray-500 lg:h-screen lg:fixed">
-                <div className="w-full p-3 lg:w-[130px] h-full border-b lg:border-b-0 border-gray-500">
-                    <div className="flex lg:flex-col gap-6 lg:pt-[60px]">
+            <div className="xl:border-x border-gray-500 xl:h-screen xl:fixed">
+                <div className="w-full p-3 xl:w-[130px] h-full border-b xl:border-b-0 border-gray-500">
+                    <div className="flex xl:flex-col gap-6 xl:pt-[60px]">
                         <SidebarMenuItem
                             activeSidebar={activeVisualSidebar}
                             onClick={() => handleVisualSidebarChange("text")}
@@ -45,7 +45,7 @@ const VisualSidebar = () => {
                     </div>
                 </div>
             </div>
-            <div className="lg:ml-[130px] w-full lg:w-[320px]">
+            <div className="xl:ml-[130px] w-full xl:w-[320px]">
                 {content}
             </div>
         </div>

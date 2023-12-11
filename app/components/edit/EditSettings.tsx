@@ -4,7 +4,7 @@ import Title from "../Title";
 import Button from "../buttons/Button";
 import CheckInput from "../inputs/CheckInput";
 
-const CreateSettings = () => {
+const EditSettings = () => {
 
     return (
         <div className="flex flex-col md:flex-row w-full">
@@ -29,4 +29,4 @@ const CreateSettings = () => {
     )
 }
 
-export default CreateSettings;
+export default EditSettings;

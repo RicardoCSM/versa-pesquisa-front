@@ -13,7 +13,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({
   }) => {
     const isActive = activeSidebar === label.toLowerCase();
     return (
-        <div className={`border max-w-[300px] lg:m-0 m-auto border-[#1565C0] rounded-lg ${isActive ? 'bg-[#D6E3FF]' : ''} hover:shadow-md`}>
+        <div className={`border max-w-[300px] xl:m-0 m-auto border-[#1565C0] rounded-lg ${isActive ? 'bg-[#D6E3FF]' : ''} hover:shadow-md`}>
             <div 
                 onClick={onClick}
                 aria-label={label} 

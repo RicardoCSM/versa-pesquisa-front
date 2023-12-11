@@ -6,7 +6,7 @@ import { BsArrowReturnRight } from 'react-icons/bs';
 import LogicBox from "../logic/LogicBox";
 import LogicNew from "../logic/LogicNew";
 
-const CreateLogic = () => {
+const EditLogic = () => {
 
     return (
         <div>
@@ -33,4 +33,4 @@ const CreateLogic = () => {
     )
 }
 
-export default CreateLogic;
+export default EditLogic;

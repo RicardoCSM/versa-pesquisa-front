@@ -5,6 +5,6 @@ export default interface ISurvey {
     category: string,
     type: string,
     status: number,
-    created_at: string,
-    updated_at: string
+    created_at: number,
+    updated_at: number
 }

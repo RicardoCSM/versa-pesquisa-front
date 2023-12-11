@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 interface ColorInputProps {
-    id?: string;
+    id: string;
     label: string;
+    default_value?: string;
+    register: UseFormRegister<FieldValues>;
 }
 
-const ColorInput: React.FC<ColorInputProps> = ({ id, label }) => {
-    const [selectedColor, setSelectedColor] = useState("#1565C0");
+const ColorInput: React.FC<ColorInputProps> = ({ id, label, default_value, register }) => {
+    const [selectedColor, setSelectedColor] = useState(default_value);
 
     const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedColor(e.target.value);
@@ -20,6 +23,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ id, label }) => {
                 <input
                     id={id}
                     type="color"
+                    {...register(id)}
                     value={selectedColor}
                     onChange={handleColorChange}
                     className="w-1/2 cursor-pointer"
