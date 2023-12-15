@@ -48,7 +48,7 @@ The application can be accessed at [http://localhost:3000](http://localhost:3000
 
 The survey panel, can be accessed at [http://localhost:3000/survey](http://localhost:3000/survey):
 
-The survey view, can be accessed at [http://localhost:3000/view](http://localhost:3000/view)
+The survey view, can be accessed at [http://localhost:3000/view?survey_id=${survey_id}]
 
 ## Folders
 
