@@ -19,7 +19,6 @@ const Home: React.FC<HomeProps> = ({toggleEdit }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
     const setSelectedSurveyId = useSurveyStore((state) => state.setSelectedSurveyId);
-    const [selectedStatus, setSelectedStatus] = useState<string>('');
 
     useEffect(() => {
         fetchSurveys();

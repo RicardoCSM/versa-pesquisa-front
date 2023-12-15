@@ -30,7 +30,7 @@ const AdminDropdown: React.FC<ProfileMenuProps> = ({ profileAction }) => {
             </div>
             {isOpen && (
                 <ProfileDropdown>
-                    <MenuItem onClick={profileAction} label="Profile" aria-label="Profile" />
+                    {/* <MenuItem onClick={profileAction} label="Profile" aria-label="Profile" /> */}
                     <MenuItem onClick={handleLogout} label="Log Out" aria-label="Log Out" />
                 </ProfileDropdown>
             )}

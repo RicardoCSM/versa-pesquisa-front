@@ -26,7 +26,7 @@ const Edit: React.FC<EditProps> = ({toggleHome}) => {
     useEffect(() => {
         if(!selectedSurveyId) {
             toggleHome('home');
-            toast.error('Select a survey first!');
+            toast.error('Select a survey in the dashboard first!');
         }
     }, []);
 

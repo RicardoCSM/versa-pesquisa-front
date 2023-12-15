@@ -6,21 +6,22 @@ import React from "react";
 import NavbarToggle from "./NavbarToggle";
 import MenuItem from "./MenuItem";
 import NavbarLink from "../links/NavbarLink";
-import ProjectsMenu from "./ProjectsMenu";
+import AdminDropdown from "./AdminDropdown";
 import ProfileMenu from "./ProfileMenu";
 
 interface AdminMenuProps {
     activeMenu: string
     onMenuChange: (menuName: string) => void
+    toggleEdit: (menuName: string) => void
 };
 
-const AdminMenu: React.FC<AdminMenuProps> = ({ activeMenu, onMenuChange }) => {
+const AdminMenu: React.FC<AdminMenuProps> = ({ activeMenu, onMenuChange, toggleEdit }) => {
     return (
         <div className="relative">
             <div className="flex flex-row items-center">
                 <div className="mx-3 hidden w-full md:grid gap-4 grid-cols-4">
                     <div className="col-span-3 border-x h-8 border-gray-500 flex items-center justify-around">
-                        <ProjectsMenu />
+                        <AdminDropdown toggleEdit={toggleEdit}/>
                         <NavbarLink label='Edit' aria-label='Edit' activeMenu={activeMenu} onMenuChange={onMenuChange} />
                         <NavbarLink label='Integrations' aria-label='Integrations' activeMenu={activeMenu} onMenuChange={onMenuChange} />
                         <NavbarLink label='Results' aria-label='Results' activeMenu={activeMenu} onMenuChange={onMenuChange} />
@@ -36,7 +37,7 @@ const AdminMenu: React.FC<AdminMenuProps> = ({ activeMenu, onMenuChange }) => {
                     </div>
                 </div>
                 <div className="flex w-full justify-center md:hidden">
-                    <ProjectsMenu />
+                    <AdminDropdown toggleEdit={toggleEdit}/>
                 </div> 
                 <NavbarToggle>
                     <MenuItem onClick={() => onMenuChange('edit')} label="Create" aria-label="Create"/>

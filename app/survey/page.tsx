@@ -53,7 +53,7 @@ const Survey = () => {
 
   return (
     <div>
-      <AdminNavbar activeMenu={activeMenu} onMenuChange={handleMenuChange}/>
+      <AdminNavbar activeMenu={activeMenu} onMenuChange={handleMenuChange} toggleEdit={handleMenuChange}/>
       {content}
     </div>
   );

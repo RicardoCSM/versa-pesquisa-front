@@ -19,8 +19,17 @@ Please check the official Next.js installation guide for server requirements bef
 ### Cloning the repository
 
 ```shell
-git@github.com:RicardoCSM/versa-pesquisa-front.git
+git clone git@github.com:RicardoCSM/versa-pesquisa-front.git
 cd versa-pesquisa-front
+```
+
+### Environment setup
+
+Create a copy of the .env.example file and name it .env. Fill in the necessary environment variables:
+
+```shell
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/
+NEXT_PUBLIC_FRONT_BASE_URL=http://localhost:3000
 ```
 
 ### Install packages
@@ -46,7 +55,7 @@ The survey view, can be accessed at [http://localhost:3000/view](http://localhos
 - `app` - Contains the icon and the pages
 - `app/components` - Contains all project components
 - `app/hooks` - Contains hooks for using Modals
-
-## Vercel
-
-You can check the application in the following Vercel link: [https://versa-pesquisa-front-ricardocsm.vercel.app/](https://versa-pesquisa-front-ricardocsm.vercel.app/)
+- `app/interfaces` - Contains project interfaces
+- `app/providers` - Contains project providers
+- `app/services` - Contains project services (including httpClient used in requests)
+- `app/pages/api/auth` - Contains Next Auth config

@@ -30,7 +30,7 @@ const Background = () => {
         handleSubmit
     } = useForm<FieldValues>({
         defaultValues: {
-          background_color: selectedTheme?.primary_color,
+          background_color: selectedTheme?.background_color,
           secondary_color: selectedTheme?.secondary_color,
           type: 1,
         }

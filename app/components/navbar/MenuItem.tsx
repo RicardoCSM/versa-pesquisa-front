@@ -4,7 +4,7 @@ import React from "react";
 
 interface MenuItemProps {
   onClick?: () => void
-  label: string
+  label?: string
   hidden?: boolean
 }
 

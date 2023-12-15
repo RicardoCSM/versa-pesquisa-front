@@ -8,9 +8,10 @@ import AdminMenu from "./AdminMenu";
 interface AdminNavbarProps {
     activeMenu: string
     onMenuChange: (menuName: string) => void
+    toggleEdit: (menuName: string) => void
 };
 
-const AdminNavbar: React.FC<AdminNavbarProps> = ({activeMenu, onMenuChange }) => {
+const AdminNavbar: React.FC<AdminNavbarProps> = ({activeMenu, onMenuChange, toggleEdit}) => {
 
     return (
         <div className="w-full bg-[#F8F2E2] z-50 border-b border-gray-500 md:fixed">
@@ -28,7 +29,7 @@ const AdminNavbar: React.FC<AdminNavbarProps> = ({activeMenu, onMenuChange }) =>
                             <Logo onClick={() => onMenuChange('home')}/>
                         </div>
                         <div className="flex-grow">
-                            <AdminMenu activeMenu={activeMenu} onMenuChange={onMenuChange} />
+                            <AdminMenu activeMenu={activeMenu} onMenuChange={onMenuChange} toggleEdit={toggleEdit}/>
                         </div>
                     </div>
                 </Container>

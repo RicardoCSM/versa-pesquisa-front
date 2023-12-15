@@ -16,14 +16,14 @@ const Share: React.FC<ShareProps> = ({toggleHome}) => {
     useEffect(() => {
         if(!selectedSurveyId) {
             toggleHome('home');
-            toast.error('Select a survey first!');
+            toast.error('Select a survey in the dashboard first!');
         }
     }, []);
 
     const copyToClipboard = async () => {
         try {
             if(url) {
-                await navigator.clipboard.writeText(url);
+                await navigator.clipboard.writeText(url + '/view?survey_id=' + selectedSurveyId);
                 toast.success("Url copied to clipboard!")
             }
         } catch (error) {

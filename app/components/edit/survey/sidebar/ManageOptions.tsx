@@ -1,5 +1,5 @@
 import { IoMdAdd } from "react-icons/io";
-import { BsPencil } from "react-icons/bs";
+import { BsPencil, BsTrash } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import useQuestionStore from "@/app/hooks/useQuestionStore";
 import toast from "react-hot-toast";
@@ -44,6 +44,18 @@ const ManageOptions: React.FC<ManageOptionsProps> = ({refreshSurvey}) => {
     }
   };
 
+  const deleteOption = async (option_id?: number) => {
+    try {
+      if(option_id) {
+        await questionOptionsService.delete(option_id);
+        toast.success("Option deleted with success!");
+        fetchOptions();
+      }
+    } catch (error) {
+      toast.error("Error deleting the option!");
+    }
+  };
+
   const fetchOptions = async () => {
     try {
       if (selectedQuestion) {
@@ -85,7 +97,10 @@ const ManageOptions: React.FC<ManageOptionsProps> = ({refreshSurvey}) => {
                 <div className="text-gray-700" onClick={() => setEditingOptionId(option.id)}>
                 {option.option_text}
                 </div>
-                <BsPencil className="text-gray-700 cursor-pointer" onClick={() => setEditingOptionId(option.id)} />
+                <div className="flex gap-1">
+                  <BsTrash className="text-gray-700 cursor-pointer" onClick={() => deleteOption(option.id)}/>
+                  <BsPencil className="text-gray-700 cursor-pointer" onClick={() => setEditingOptionId(option.id)} />
+                </div>
             </div>
           )}
         </div>
