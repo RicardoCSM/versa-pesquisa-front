@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react';
 import Title from "../Title";
 import useSurveyStore from '@/app/hooks/useSurveyStore';
 import toast from 'react-hot-toast';
+import { MdOutlineContentCopy } from "react-icons/md";
 
 interface ShareProps {
     toggleHome: (menuName: string) => void
 };
 
 const Share: React.FC<ShareProps> = ({toggleHome}) => {
-    const [url, setUrl] = useState('http://localhost:3000/view');
+    const [url, setUrl] = useState(process.env.NEXT_PUBLIC_FRONT_BASE_URL);
     const selectedSurveyId = useSurveyStore((state) => state.selectedSurveyId);
     
     useEffect(() => {
-        if(selectedSurveyId) {
-        } else {
+        if(!selectedSurveyId) {
             toggleHome('home');
             toast.error('Select a survey first!');
         }
@@ -22,28 +22,36 @@ const Share: React.FC<ShareProps> = ({toggleHome}) => {
 
     const copyToClipboard = async () => {
         try {
-            await navigator.clipboard.writeText(url);
+            if(url) {
+                await navigator.clipboard.writeText(url);
+                toast.success("Url copied to clipboard!")
+            }
         } catch (error) {
             console.error('Unable to copy to clipboard', error);
         }
     };
 
     return (
-        <div className=" md:pt-[65px]">
+        <div className="w-full md:pt-[65px]">
             <Title title="Share" />
-            <div className="flex items-center justify-center h-[400px]">
-                <div className="border border-[#1565C0] p-8 rounded-lg flex items-center space-x-2">
-                    <input
-                        type="text"
-                        value={url}
-                        readOnly
-                        className="border border-[#1565C0] rounded-lg p-2 w-[250px] bg-[#F8F2E2]"
-                    />
+            <div className="w-full flex items-center justify-center h-[400px]">
+                <div className="w-1/2 border border-[#1565C0] p-8 rounded-lg flex items-end space-x-2">
+                    <div className='w-3/4'>
+                        <h1>Base URL:</h1>
+                        <input
+                            type="text"
+                            value={url + '/view?survey_id=' + selectedSurveyId}
+                            readOnly
+                            className="border border-[#1565C0] rounded-lg p-2 w-full bg-[#F8F2E2]"
+                        />
+                    </div>
                     <button
                         onClick={copyToClipboard}
-                        className="bg-[#1565C0] text-white px-4 py-2 rounded-lg"
+                        className="bg-[#1565C0] text-white px-4 rounded-lg w-1/4 pt-1"
                     >
-                        Copy
+                        <div className='flex w-full justify-center text-xl p-2'>
+                            <MdOutlineContentCopy />
+                        </div>
                     </button>
                 </div>
             </div>

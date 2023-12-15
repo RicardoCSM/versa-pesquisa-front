@@ -12,10 +12,12 @@ import {
 import themesService from "@/app/services/themes.service";
 import toast from "react-hot-toast";
 import useThemeStore from "@/app/hooks/useThemeStore";
+import { useState } from "react";
 
 const Text = () => {
     const setSelectedTheme = useThemeStore((state) => state.setSelectedTheme);
     const selectedTheme = useThemeStore((state) => state.selectedTheme);
+    const [selectedFont, setSelectedFont] = useState(1);
 
     const fontOptions = [
         { value: 1, label: "Roboto" },
@@ -39,13 +41,16 @@ const Text = () => {
                 secondary_color: data.secondary_color
             });
             toast.success('Theme updated with success!');
-            if (response.data) {
-                setSelectedTheme(response.data);
-            }
+            setSelectedTheme(response.data);
         } catch (error) {
             toast.error('Error updating the theme!');
         }
     }
+
+    const handleFontChange = (selectedFont: any) => {
+        setSelectedFont(selectedFont);
+        console.log(selectedFont);
+    };
 
     return (
         <div>
@@ -62,6 +67,8 @@ const Text = () => {
                     default_value={selectedTheme?.secondary_color}
                     register={register}/>
                 <SelectInput
+                    id="font"
+                    onChange={handleFontChange}
                     label="Font"
                     options={fontOptions}/>
                 <div className="mt-3 w-2/3">

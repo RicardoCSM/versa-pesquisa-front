@@ -19,8 +19,7 @@ const Results: React.FC<ResultsProps> = ({toggleHome}) => {
     const selectedSurveyId = useSurveyStore((state) => state.selectedSurveyId);
     
     useEffect(() => {
-        if(selectedSurveyId) {
-        } else {
+        if(!selectedSurveyId) {
             toggleHome('home');
             toast.error('Select a survey first!');
         }
@@ -30,7 +29,7 @@ const Results: React.FC<ResultsProps> = ({toggleHome}) => {
         setActiveSidebar(sidebarName);
         switch (sidebarName) {
             case "summary":
-                setContent(<Summary />);
+                setContent(<Summary/>);
                 break;
             case "questions":
                 setContent(<Questions />);

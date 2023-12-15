@@ -19,6 +19,7 @@ const Home: React.FC<HomeProps> = ({toggleEdit }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
     const setSelectedSurveyId = useSurveyStore((state) => state.setSelectedSurveyId);
+    const [selectedStatus, setSelectedStatus] = useState<string>('');
 
     useEffect(() => {
         fetchSurveys();
@@ -70,6 +71,20 @@ const Home: React.FC<HomeProps> = ({toggleEdit }) => {
         return date.toLocaleDateString();
     };
 
+    const handleStatusChange = async (event: React.ChangeEvent<HTMLSelectElement>, surveyId: number) => {
+        const newStatus = event.target.value;
+        try {
+            await surveysService.update({
+                id: surveyId,
+                status: newStatus
+            });
+            fetchSurveys();
+            toast.success('Status changed with success!');
+        } catch (error) {
+            toast.error('Error changing the status!');
+        }
+    };
+
     return (
         <div className="md:pt-[65px]">
             <Title title="Dashboard" />
@@ -113,7 +128,14 @@ const Home: React.FC<HomeProps> = ({toggleEdit }) => {
                                             {survey.description}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {survey.status}
+                                            <select
+                                                onChange={(event) => handleStatusChange(event, survey.id)}
+                                                className="bg-transparent"
+                                                defaultValue={survey.status === 1 ? '1' : '0'}
+                                                >
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
                                         </td>
                                         <td className="px-6 py-4">
                                             {formatDate(survey.created_at)}

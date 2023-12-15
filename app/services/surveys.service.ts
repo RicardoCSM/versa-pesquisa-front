@@ -11,7 +11,7 @@ const surveysService = {
   getDetails(surveyId: number) {
     return httpClient.get(`survey/details?id=${surveyId}`)
   },
-  update(survey: ISurvey) {
+  update(survey: any) {
     return httpClient.put(`surveys/${survey.id}`, survey)
   },
   delete(surveyId: number) {

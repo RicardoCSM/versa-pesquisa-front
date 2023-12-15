@@ -1,13 +1,18 @@
 'use client';
 
 import useThemeStore from "@/app/hooks/useThemeStore";
+import ITheme from "@/app/interfaces/ITheme";
+import { useEffect, useState } from "react";
 
 const DesktopVisual = () => {
+    const [theme, setTheme] = useState<ITheme | null>();
     const selectedTheme = useThemeStore((state) => state.selectedTheme);
-
+    useEffect(() => {
+        setTheme(selectedTheme)
+    }, [theme])
     return (
         <>
-            <div aria-label="Desktop Visual" className="mx-auto border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[294px] max-w-[512px]">
+            <div aria-label="Desktop Visual" className="mx-auto border-gray-800 border-[16px] rounded-t-xl h-[294px] max-w-[512px]">
                 <div className="rounded-xl overflow-hidden h-[262px]">
                     <div className="flex items-center justify-center h-[262px] w-full rounded-xl bg-[#F8F2E2]">
                         <div className={`flex flex-col items-center h-[180px] w-4/5 p-3 border-2 border-[${selectedTheme?.primary_color}] bg-[${selectedTheme?.background_color}] rounded-lg`}>
